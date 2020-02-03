@@ -1,0 +1,123 @@
+﻿@using prikol.Models
+
+
+@*ViewBag.txt_dt - current date 
+chabge Viewbag.flag to txt_dt
+    bigger text*@
+
+
+
+@if (@ViewBag.averageWeather != null){
+<div style="margin-top:20px">
+        @foreach (tempModel temp in ViewBag.averageWeather)
+        {
+    <ul class="formfield">
+        <li style="display:flex">
+            <a href="#" class="ListDays" id="firstDay+@temp.Id">@temp.dt_txt.DayOfWeek</a>
+        </li>
+        <div class="firstDay+@temp.Id" style="display:none">
+            @for (int i = 0; i < ViewBag.AllInfos.Count; i++)
+            {
+                if (temp.dt_txt.Day == ViewBag.AllInfos[i].dt_txt.Day)
+                {
+                    
+                    <form method="post" action="/OpenweatherMap/saveToFile4days">
+                        <input type="hidden" value="@ViewBag.AllInfos[i].Id" name="IdElement" />
+                        <p>
+                            @ViewBag.AllInfos[i].dt_txt
+                        </p>
+                        <table>
+                            <tr>
+                                <th>
+                                    Clouds:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].clouds.all
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Wind speed:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].wind.speed Km/h
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Wind deg:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].wind.deg °
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    temperature:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].main.temp °
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Pressure:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].main.pressure
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Humidity:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].main.humidity
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Weather description:
+                                </th>
+                                <th>
+                                    @ViewBag.AllInfos[i].weather[0].description
+                                </th>
+                            </tr>
+                        </table>
+                        <a href="#">Hide</a>
+                        <input type="submit" value="Save" />
+                    </form>
+                }
+            }
+        </div>
+    </ul>
+        }
+</div>
+}
+
+<script>
+
+
+    $('ul.formfield a').click(function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        var cl = document.getElementsByClassName(id)[0];
+        console.log(cl);
+        $(cl).css('display', 'block');
+});
+
+    //    $('.ListDays').click(function (event) {
+    //    event.preventDefault();
+    //    $.ajax({
+    //        url: $(this).attr('href'),
+    //        success: function (response) {
+    //            var id = $(this).attr('id');
+    //            alert(id);
+    //            //var current = document.getElementsByClassName("firstDay")
+    //            //current.style.display = "block";
+    //        }
+    //    });
+    //    return false; // for good measure
+    //});
+</script>
+

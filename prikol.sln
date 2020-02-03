@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prikol", "prikol\prikol.csproj", "{C54837BD-7637-4F5E-A1FC-2A7B39AE20F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C54837BD-7637-4F5E-A1FC-2A7B39AE20F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54837BD-7637-4F5E-A1FC-2A7B39AE20F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54837BD-7637-4F5E-A1FC-2A7B39AE20F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54837BD-7637-4F5E-A1FC-2A7B39AE20F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32F3CBBA-1891-456B-A9A9-EA142DA814B3}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "GetWeather";
+}
+
+<h2>GetWeather</h2>
+
+<div>
+    <label>Ночная тема</label>
+    <input type="checkbox" id="night" />
+</div>
+
+<div style="display:flex;justify-content:space-around" >
+    <div>
+        <a id="Ref" href="~/OpenweatherMap/getWeatherForCurrCity/">Current location</a>
+        <br />
+        <label>Get Weather for 5 days</label>
+        <form id="weather4Days" method="post" action="/OpenweatherMap/getWeather5days">
+            <input type="text" name="city5days" id="textBox5days">
+            <input type="submit" />
+        </form>
+        <div id="result2">
+        </div>
+    </div>
+
+    <div>
+        <a id="Ref2" href="~/OpenweatherMap/getWeatherForCurrCity/">Current location</a>
+        <br />
+        <label>Get current weather</label>
+        <form id="formCity" method="post" action="">
+            <input type="text" name="city" id="textBox">
+            <input type="submit" />
+        </form>
+        <div id="result">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(':checkbox').on('change', function () {
+        if ($("#night").prop("checked")) {
+            $("body").css("background-color", "black");
+        } else {
+            $("body").css("background-color", "white");
+
+        }
+        
+
+    //if(Object.keys(sendData).length > 0){
+    //    $.ajax({
+    //        url: 'result.php', // правильный путь к обработчику
+    //        type: 'POST',
+    //        data: sendData,
+    //        success: function(data){
+    //            alert(data); // заменить на нужное
+    //        }
+    //    });
+    //}
+});
+
+    $(function () {
+        $('#formCity').submit(function (e) {
+            var $form = $(this);
+            $.ajax({
+                type: $form.attr('method'),
+                url: $form.attr('action'),
+                data: $form.serialize()
+            }).done(function (data) {
+                $('#result').html(data)
+            }).fail(function () {
+                console.log('fail');
+            });
+            e.preventDefault();
+        });
+    }());
+
+        $(function () {
+        $('#weather4Days').submit(function (e) {
+            var $form = $(this);
+            $.ajax({
+                type: $form.attr('method'),
+                url: $form.attr('action'),
+                data: $form.serialize()
+            }).done(function (data) {
+                $('#result2').html(data)
+            }).fail(function () {
+                console.log('fail');
+            });
+            e.preventDefault();
+        });
+    }());
+
+    $('#Ref').click(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            success: function (response) {
+                //var current = document.getElementById("textBox");
+                //current.value = response;
+                current = document.getElementById("textBox5days");
+                current.value = response;
+
+            }
+        });
+        return false; // for good measure
+    });
+
+        $('#Ref2').click(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            success: function (response) {
+                var current = document.getElementById("textBox");
+                current.value = response;
+                //current = document.getElementById("textBox5days");
+                //current.value = response;
+
+            }
+        });
+        return false; // for good measure
+    });
+
+</script>
+

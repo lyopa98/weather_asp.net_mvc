@@ -1,0 +1,18 @@
+﻿@if (@ViewBag.responceWeather != null)
+{
+    <form method="post" action="/OpenweatherMap/saveToFile">
+        <p>City: @ViewBag.responceWeather.name</p>
+        <p>Country code: @ViewBag.responceWeather.sys.country</p>
+        <p>Sunrise: @ViewBag.sunrise.Hours:@ViewBag.sunrise.Minutes:@ViewBag.sunrise.Seconds АМ</p>
+        <p>Sunset: @ViewBag.sunset.Hours:@ViewBag.sunset.Minutes:@ViewBag.sunset.Seconds РМ</p>
+        <p>Clouds:@ViewBag.responceWeather.clouds.all</p>
+        <p>Wind speed:@ViewBag.responceWeather.wind.speed Km/h</p>
+        <p>Wind deg:@ViewBag.responceWeather.wind.deg °</p>
+        <p>Wind deg:@ViewBag.responceWeather.wind.deg °</p>
+        <p>Current temperature:@ViewBag.responceWeather.main.temp °</p>
+        <p>Current Pressure: @ViewBag.responceWeather.main.pressure</p>
+        <p>Current Humidity: @ViewBag.responceWeather.main.humidity</p>
+        <p>Current weather: @ViewBag.responceWeather.weather[0].description</p>
+        <input type="submit" />
+    </form>
+}
